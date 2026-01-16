@@ -1,0 +1,101 @@
+<svg width="240" height="240" viewBox="0 0 240 240"
+     xmlns="http://www.w3.org/2000/svg">
+
+<style>
+/* Rotation */
+.chip {
+  transform-origin: 50% 50%;
+  animation: rotate 12s linear infinite;
+}
+
+/* Key pulse */
+.key {
+  transform-origin: 50% 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Circuit dots blink */
+.dot {
+  animation: blink 1.5s infinite alternate;
+}
+
+/* Glow on hover */
+svg:hover .chip {
+  filter: drop-shadow(0 0 12px #4fc3f7);
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.12); }
+}
+
+@keyframes blink {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+</style>
+
+<!-- CHIP BODY -->
+<g class="chip" fill="#2e3440">
+
+  <!-- main square -->
+  <rect x="60" y="60" width="120" height="120" rx="16"/>
+
+  <!-- chip pins -->
+  <g fill="#2e3440">
+    <!-- top -->
+    <rect x="90" y="30" width="10" height="30"/>
+    <rect x="115" y="30" width="10" height="30"/>
+    <rect x="140" y="30" width="10" height="30"/>
+
+    <!-- bottom -->
+    <rect x="90" y="180" width="10" height="30"/>
+    <rect x="115" y="180" width="10" height="30"/>
+    <rect x="140" y="180" width="10" height="30"/>
+
+    <!-- left -->
+    <rect x="30" y="90" width="30" height="10"/>
+    <rect x="30" y="115" width="30" height="10"/>
+    <rect x="30" y="140" width="30" height="10"/>
+
+    <!-- right -->
+    <rect x="180" y="90" width="30" height="10"/>
+    <rect x="180" y="115" width="30" height="10"/>
+    <rect x="180" y="140" width="30" height="10"/>
+  </g>
+
+</g>
+
+<!-- INNER BORDER -->
+<rect x="75" y="75" width="90" height="90" rx="10"
+      fill="none" stroke="#ffffff" stroke-width="6"/>
+
+<!-- KEY ICON -->
+<g class="key" fill="#ffffff">
+
+  <!-- key head -->
+  <circle cx="120" cy="105" r="14"/>
+
+  <!-- key stem -->
+  <rect x="117" y="105" width="6" height="38"/>
+
+  <!-- key teeth -->
+  <rect x="117" y="130" width="12" height="6"/>
+  <rect x="117" y="145" width="10" height="6"/>
+
+</g>
+
+<!-- CIRCUIT DOTS -->
+<g fill="#4fc3f7">
+  <circle class="dot" cx="120" cy="18" r="4"/>
+  <circle class="dot" cx="120" cy="222" r="4"/>
+  <circle class="dot" cx="18" cy="120" r="4"/>
+  <circle class="dot" cx="222" cy="120" r="4"/>
+</g>
+
+</svg>
