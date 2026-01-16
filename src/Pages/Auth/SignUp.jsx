@@ -1,13 +1,33 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authDataContext } from "../../Context/AuthContext";
 
 function SignUp() {
+  const { allUserData, setallUserData } = useContext(authDataContext);
+
   const [userName, setuserName] = useState("");
   const [userEmail, setuserEmail] = useState("");
   const [USerPass, setUSerPass] = useState("");
+  const [allUser, setallUser] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newUser = [
+      ...allUser,
+      { name: userName, email: userEmail, password: USerPass },
+    ];
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const availableUser = users.find((user) => user.email === userEmail);
+    if (availableUser) {
+      alert("User already exists");
+      return;
+    }
+
+    localStorage.setItem("users", JSON.stringify(newUser));
+    setallUser(newUser);
+    setallUserData(newUser);
 
     setuserName("");
     setuserEmail("");
@@ -31,6 +51,7 @@ function SignUp() {
             onChange={(e) => {
               setuserName(e.target.value);
             }}
+            required
           />
 
           <input
@@ -40,6 +61,7 @@ function SignUp() {
             onChange={(e) => {
               setuserEmail(e.target.value);
             }}
+            required
           />
 
           <input
@@ -50,6 +72,7 @@ function SignUp() {
             onChange={(e) => {
               setUSerPass(e.target.value);
             }}
+            required
           />
 
           <button className="w-full bg-blue-600 py-2 rounded text-white active:bg-blue-700 active:scale-95 cursor-pointer transition-all duration-200">
