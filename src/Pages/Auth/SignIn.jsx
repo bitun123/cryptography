@@ -22,6 +22,7 @@ function SignIn() {
       Navigate("/mainDashboard");
     } else {
       alert("Invalid email or password");
+      Navigate("/signup");
     }
   };
 
