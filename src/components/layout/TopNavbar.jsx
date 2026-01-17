@@ -12,12 +12,12 @@ function TopNavbar() {
           <Search
            
             size={20}
-            className="absolute left-2 top-3 transform font-semibold"
+            className="absolute left-2 top-3 transform font-semibold text-gray-700"
           />
           <input
             type="text"
             placeholder="search Anything.........."
-            className="px-8 py-2 border-none outline-none bg-gray-400 w-[30rem] rounded text-gray-200 text-xl"
+            className="px-8 py-2 border-none outline-none bg-[#1F2937] w-[30rem] rounded text-gray-200 text-xl"
           />
         </div>
 

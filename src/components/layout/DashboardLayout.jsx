@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopNavbar from "./TopNavbar";
+import { About } from "../../AllComponents";
 
 export default function DashboardLayout() {
   return (
@@ -21,6 +22,7 @@ export default function DashboardLayout() {
         {/* Scrollable content area */}
         <main className="flex-1 overflow-y-auto p-1 ">
           <Outlet />
+          {/* <About/> */}
         </main>
 
       </div>

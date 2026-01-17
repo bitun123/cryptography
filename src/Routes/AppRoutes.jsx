@@ -12,6 +12,9 @@ import {
   News,
 } from "../AllComponents";
 
+
+
+
 function AppRoutes() {
   return (
     <Routes>
