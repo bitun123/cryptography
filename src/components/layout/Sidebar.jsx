@@ -3,18 +3,31 @@ import cryptoLogo from "../../assets/images/cryptoLogo.png";
 import { Home, TrendingUp, Repeat, Lightbulb } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-
 const menuItems = [
-  { key: "home", icon: Home, label: "Home", path: "/About" },
+  { key: "home", icon: Home, label: "Home", path: "/mainDashboard" },
+
   {
     key: "cryptocurrencies",
     icon: TrendingUp,
     label: "Cryptocurrencies",
-    path: "/Cryptocurrencies",
+    path: "/mainDashboard/cryptocurrencies",
   },
-  { key: "exchanges", icon: Repeat, label: "Exchanges", path: "/Exchanges" },
-  { key: "news", icon: Lightbulb, label: "News", path: "/News" },
+
+  {
+    key: "exchanges",
+    icon: Repeat,
+    label: "Exchanges",
+    path: "/mainDashboard/exchanges",
+  },
+
+  {
+    key: "news",
+    icon: Lightbulb,
+    label: "News",
+    path: "/mainDashboard/news",
+  },
 ];
+
 
 function Sidebar() {
   return (
@@ -34,11 +47,12 @@ function Sidebar() {
       <div className="p-2 mt-2 bg-red">
         {menuItems.map((item) => {
           const Icon = item.icon;
-
+ const isHome = item.key === "home"; 
           return (
             <NavLink
               key={item.key}
               to={item.path}
+                end={isHome} 
               className={({ isActive }) =>
                 `flex w-full items-center gap-3 px-4 py-3 mb-1 rounded transition
                  ${

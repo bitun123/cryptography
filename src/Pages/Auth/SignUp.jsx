@@ -2,37 +2,46 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { authDataContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const { allUserData, setallUserData } = useContext(authDataContext);
+  const { setallUserData } = useContext(authDataContext);
 
+  const Navigate = useNavigate();
   const [userName, setuserName] = useState("");
   const [userEmail, setuserEmail] = useState("");
   const [USerPass, setUSerPass] = useState("");
   const [allUser, setallUser] = useState([]);
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const newUser = [
-      ...allUser,
-      { name: userName, email: userEmail, password: USerPass },
-    ];
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const availableUser = users.find((user) => user.email === userEmail);
-    if (availableUser) {
-      alert("User already exists");
-      return;
-    }
+  const availableUser = users.find((user) => user.email === userEmail);
+  if (availableUser) {
+    alert("User already exists");
+    return;
+  }
 
-    localStorage.setItem("users", JSON.stringify(newUser));
-    setallUser(newUser);
-    setallUserData(newUser);
+  const newUser = [
+    ...allUser,
+    { name: userName, email: userEmail, password: USerPass },
+  ];
 
-    setuserName("");
-    setuserEmail("");
-    setUSerPass("");
-  };
+  localStorage.setItem("users", JSON.stringify(newUser));
+
+  setallUser(newUser);
+  setallUserData(newUser);
+
+  // clear inputs
+  setuserName("");
+  setuserEmail("");
+  setUSerPass("");
+
+  // navigate AFTER everything
+  Navigate("/SignIn");
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">

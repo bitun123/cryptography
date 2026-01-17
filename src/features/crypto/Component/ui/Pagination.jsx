@@ -1,27 +1,25 @@
-import React from "react";
-
-export default function Pagination({ page, onPrev, onNext, hasMore }) {
+function Pagination({ page, hasMore, onPrev, onNext }) {
   return (
-    <div className="flex items-center justify-center gap-4 mt-8">
+    <div className="flex justify-center items-center gap-4 mt-6">
       <button
-        onClick={onPrev}
         disabled={page === 1}
-        className="px-4 py-2 rounded bg-gray-700 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition"
+        onClick={onPrev}
+        className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
       >
         Previous
       </button>
 
-      <span className="text-white font-medium">
-        Page {page}
-      </span>
+      <span className="text-white">Page {page}</span>
 
       <button
-        onClick={onNext}
         disabled={!hasMore}
-        className="px-4 py-2 rounded bg-gray-700 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition cursor-pointer"
+        onClick={onNext}
+        className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
       >
         Next
       </button>
     </div>
   );
 }
+
+export default Pagination;

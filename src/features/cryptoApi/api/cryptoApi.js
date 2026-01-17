@@ -12,8 +12,9 @@ export const cryptoApi = createApi({
 
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (page = 1) => `/coins?limit=20&offset=${(page - 1) * 20}`,
-      transformResponse: (response) => response.data.coins,
+      query: ({ limit = 20, offset = 0 }) =>
+        `coins?limit=${limit}&offset=${offset}`,
+      transformResponse: (res) => res.data.coins,
     }),
 
 getCoinHistory: builder.query({
@@ -79,7 +80,16 @@ getGlobalStats: builder.query({
 }),
 
 
+getExchanges: builder.query({
+  query: ({ limit = 20, offset = 0 }) =>
+    `/exchanges?limit=${limit}&offset=${offset}`,
+  transformResponse: (res) => res.data.exchanges,
+}),
 
+getCryptoNews: builder.query({
+  query: () => `https://min-api.cryptocompare.com/data/v2/news/?lang=EN`,
+  transformResponse: (res) => res.Data.slice(0, 20),
+}),
 
   }),
 });
@@ -89,4 +99,6 @@ export const {
 useGetCoinHistoryQuery,
 useGetCoinMarketCapHistoryQuery,
 useGetGlobalStatsQuery,
+useGetExchangesQuery,
+useGetCryptoNewsQuery,
 } = cryptoApi;
