@@ -3,7 +3,7 @@ import { authDataContext } from "../../Context/AuthContext";
 
 export default function Profile() {
   const { allUserData } = useContext(authDataContext);
-console.log(allUserData[0].name)
+
   return (
     <div className="p-6 text-white">
       <h1 className="text-2xl font-semibold mb-4">My Profile</h1>

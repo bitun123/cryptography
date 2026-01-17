@@ -8,7 +8,7 @@ import { authDataContext } from "../../Context/AuthContext";
 function TopNavbar() {
   const [showMenuProfile, setShowMenuProfile] = useState(false);
   const navigate = useNavigate();
-  const { Logout } = useContext(authDataContext);
+  const { allUserData,Logout } = useContext(authDataContext);
 
 function logoutpage() {
   Logout();
@@ -57,8 +57,8 @@ function logoutpage() {
                     <span className="text-white">sa</span>
                   </div>
                   <div>
-                    <p className="text-white text-sm">satyajit das mahapatra</p>
-                    <p className="text-gray-400 text-xs">satyajit@gmail.com</p>
+                    <p className="text-white text-sm">{allUserData[0].name}</p>
+                    <p className="text-gray-400 text-xs">{allUserData[0].email}</p>
                   </div>
                 </div>
 
